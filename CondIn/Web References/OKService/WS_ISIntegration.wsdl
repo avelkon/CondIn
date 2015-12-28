@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="UploadFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="file" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Err" nillable="true" type="tns:ResultService" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultService">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResultRow">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ResultRow">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Field" type="tns:ResultRowField" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ResultRowField">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Value" nillable="true" type="s:string" />
+        </s:sequence>
+        <s:attribute name="Name" type="s:string" />
+        <s:attribute name="Type" type="tns:ProcedureFieldType" use="required" />
+      </s:complexType>
+      <s:simpleType name="ProcedureFieldType">
+        <s:restriction base="s:string">
+          <s:enumeration value="STRING" />
+          <s:enumeration value="GUID" />
+          <s:enumeration value="INT" />
+          <s:enumeration value="DECIMAL" />
+          <s:enumeration value="DATETIME" />
+          <s:enumeration value="IMAGE" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="Get">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Procedure" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResult" type="tns:ArrayOfResultRow" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfResultRow">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ResultRow" nillable="true" type="tns:ResultRow" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Set">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Procedure" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Err" nillable="true" type="tns:ResultService" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetAsync">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProcedureName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetAsyncResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Err" nillable="true" type="tns:ResultService" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetAsync_ResultGet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="guid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetAsync_ResultGetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Err" nillable="true" type="tns:ResultService" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="UploadFileSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadFile" />
+  </wsdl:message>
+  <wsdl:message name="UploadFileSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSoapIn">
+    <wsdl:part name="parameters" element="tns:Get" />
+  </wsdl:message>
+  <wsdl:message name="GetSoapOut">
+    <wsdl:part name="parameters" element="tns:GetResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetSoapIn">
+    <wsdl:part name="parameters" element="tns:Set" />
+  </wsdl:message>
+  <wsdl:message name="SetSoapOut">
+    <wsdl:part name="parameters" element="tns:SetResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetAsyncSoapIn">
+    <wsdl:part name="parameters" element="tns:SetAsync" />
+  </wsdl:message>
+  <wsdl:message name="SetAsyncSoapOut">
+    <wsdl:part name="parameters" element="tns:SetAsyncResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetAsync_ResultGetSoapIn">
+    <wsdl:part name="parameters" element="tns:SetAsync_ResultGet" />
+  </wsdl:message>
+  <wsdl:message name="SetAsync_ResultGetSoapOut">
+    <wsdl:part name="parameters" element="tns:SetAsync_ResultGetResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WS_ISIntegrationSoap">
+    <wsdl:operation name="UploadFile">
+      <wsdl:input message="tns:UploadFileSoapIn" />
+      <wsdl:output message="tns:UploadFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <wsdl:input message="tns:GetSoapIn" />
+      <wsdl:output message="tns:GetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Set">
+      <wsdl:input message="tns:SetSoapIn" />
+      <wsdl:output message="tns:SetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAsync">
+      <wsdl:input message="tns:SetAsyncSoapIn" />
+      <wsdl:output message="tns:SetAsyncSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAsync_ResultGet">
+      <wsdl:input message="tns:SetAsync_ResultGetSoapIn" />
+      <wsdl:output message="tns:SetAsync_ResultGetSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WS_ISIntegrationSoap" type="tns:WS_ISIntegrationSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UploadFile">
+      <soap:operation soapAction="http://tempuri.org/UploadFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <soap:operation soapAction="http://tempuri.org/Get" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Set">
+      <soap:operation soapAction="http://tempuri.org/Set" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAsync">
+      <soap:operation soapAction="http://tempuri.org/SetAsync" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAsync_ResultGet">
+      <soap:operation soapAction="http://tempuri.org/SetAsync_ResultGet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WS_ISIntegrationSoap12" type="tns:WS_ISIntegrationSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UploadFile">
+      <soap12:operation soapAction="http://tempuri.org/UploadFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <soap12:operation soapAction="http://tempuri.org/Get" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Set">
+      <soap12:operation soapAction="http://tempuri.org/Set" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAsync">
+      <soap12:operation soapAction="http://tempuri.org/SetAsync" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAsync_ResultGet">
+      <soap12:operation soapAction="http://tempuri.org/SetAsync_ResultGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WS_ISIntegration">
+    <wsdl:port name="WS_ISIntegrationSoap" binding="tns:WS_ISIntegrationSoap">
+      <soap:address location="http://91.220.233.54/WARMDMS/WS/WS_ISIntegration.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WS_ISIntegrationSoap12" binding="tns:WS_ISIntegrationSoap12">
+      <soap12:address location="http://91.220.233.54/WARMDMS/WS/WS_ISIntegration.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
