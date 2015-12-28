@@ -22,15 +22,5 @@ namespace CondIn.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://91.220.233.54/WARMDMS/WS/WS_ISIntegration.asmx")]
-        public string CondIn_OKService_WS_ISIntegration {
-            get {
-                return ((string)(this["CondIn_OKService_WS_ISIntegration"]));
-            }
-        }
     }
 }
