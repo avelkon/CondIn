@@ -9,8 +9,8 @@ namespace CondIn
         {
             OK_Service.WS_ISIntegrationSoapClient service = new OK_Service.WS_ISIntegrationSoapClient();
             string op = "";
-            string login = "";
-            string pass = "";
+            string login = "global";
+            string pass = "z61Q6BibuF";
             string data = "";
             string fileName = "OK.log";
             bool isHelp = false;
