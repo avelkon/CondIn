@@ -36,8 +36,15 @@ namespace CondIn
             }
             else
             {
-                OK_Service.ResultService result = service.SetAsync(login, pass, op, data);
-                File.AppendAllText(fileName, DateTime.Now.ToString() + "\t" + result.Status + "\t" + result.Text + "\n");
+                try
+                {
+                    OK_Service.ResultService result = service.SetAsync(login, pass, op, data);
+                    File.AppendAllText(fileName, DateTime.Now.ToString() + "\t" + result.Status + "\t" + result.Text + "\n");
+                }
+                catch (Exception ex)
+                {
+                    File.AppendAllText(fileName, DateTime.Now.ToString() + "\t" + ex.Message+"\n");
+                }
             }
         }
     }
