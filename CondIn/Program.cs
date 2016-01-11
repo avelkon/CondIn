@@ -7,6 +7,7 @@ namespace CondIn
     {
         static void Main(string[] args)
         {
+            System.Net.ServicePointManager.Expect100Continue = false;
             OK_Service.WS_ISIntegrationSoapClient service = new OK_Service.WS_ISIntegrationSoapClient();
             string op = "";
             string login = "global";
@@ -51,20 +52,25 @@ namespace CondIn
                 try
                 {
                     OK_Service.ResultService result = null;
+                    if (serv_proc == 0)
+                    {
+                        op = "DMT_Set_StockEx \"КО01283-03750\",1,816707759";
+                        result = service.Set(login, pass, op);
+                    }
                     if (serv_proc == 1)
                     {
-                        service.Set(login, pass, op);
+                        result = service.Set(login, pass, op);
                     }
                     if (serv_proc == 2)
                     {
                         sourceFileData = File.ReadAllBytes(sourceFileName);
                         result = service.UploadFile(login, pass, sourceFileData, destFileName);
                     }
-                    File.AppendAllText(logFileName, DateTime.Now.ToString() + "\t" + result.Status + "\t" + result.Text + "\n");
+                    File.AppendAllText(logFileName, "[RESPONSE]\t" + DateTime.Now.ToString() + "\t" + result.Text + "\t" + result.Data + "\n");
                 }
                 catch (Exception ex)
                 {
-                    File.AppendAllText(logFileName, DateTime.Now.ToString() + "\t" + ex.Message+"\n");
+                    File.AppendAllText(logFileName, "[ERROR]\t" + DateTime.Now.ToString() + "\t" + ex.Message+"\n");
                 }
             }
         }
