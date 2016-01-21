@@ -18,12 +18,17 @@ namespace CondIn
             string sourceFileName = "";
             byte[] sourceFileData;
             int serv_proc = 0;
-            bool isHelp = false;
+            bool isHelp = false, isDataKey = false;
             for (int i = 0; i < args.Length; i++)
             {
+                if (isHelp) break;
+                if (isDataKey)
+                {
+                    data += args[i]+" ";
+                }
                 switch(args[i].ToLower()) {
                     case "set": serv_proc = 1; break;
-                    case "-d": data = args[i + 1]; break;
+                    case "-d": isDataKey = true; break;
                     case "-o": op = args[i + 1];break;
                     case "upload": serv_proc = 2; break;
                     case "uploadfile": serv_proc = 2; break;
@@ -35,6 +40,7 @@ namespace CondIn
                     case "--log": logFileName = args[i + 1]; break;
                 }
             }
+            data = data.Trim();
             if (isHelp)
             {
                 Console.WriteLine("\t-h\t\tShow help");
@@ -43,6 +49,7 @@ namespace CondIn
                 Console.WriteLine("\t--log\t\tLog file name");
                 Console.WriteLine("\tKeys for \"Set\" procedure");
                 Console.WriteLine("\t-o\t\tProcedure name and args");
+                Console.WriteLine("\t-d\t\tData for procedure");
                 Console.WriteLine("\tKeys for \"UploadFile\" procedure");
                 Console.WriteLine("\t-s\t\tPath to source file");
                 Console.WriteLine("\t-f\t\tFile name");
@@ -54,12 +61,12 @@ namespace CondIn
                     OK_Service.ResultService result = null;
                     if (serv_proc == 0)
                     {
-                        op = "DMT_Set_StockEx \"КО01283-03750\",1,816707759";
-                        result = service.Set(login, pass, op);
+                        //op = "DMT_Set_StockEx \"КО01283-03750\",1,816707759";
+                        //result = service.Set(login, pass, op);
                     }
                     if (serv_proc == 1)
                     {
-                        result = service.Set(login, pass, op);
+                        result = service.SetAsync(login, pass, op, data);
                     }
                     if (serv_proc == 2)
                     {
