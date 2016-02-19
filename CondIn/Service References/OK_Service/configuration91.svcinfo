@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="XS/wvAit5mD0k2PRoZZqfoEcy+Q=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="MUqZW+ZG5kvWnGV0Vyv6JEKpbxk=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="WS_ISIntegrationSoap">
       <properties>
@@ -221,10 +221,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="WS_ISIntegrationSoap" contract="OK_Service.WS_ISIntegrationSoap" bindingType="basicHttpBinding" address="https://91.220.233.54/WARMDMS/WS/WS_ISIntegration.asmx" bindingConfiguration="WS_ISIntegrationSoap">
+    <endpoint name="WS_ISIntegrationSoap" contract="OK_Service.WS_ISIntegrationSoap" bindingType="basicHttpBinding" address="https://optimum.uniconf.ru/WARMDMS/WS/WS_ISIntegration.asmx" bindingConfiguration="WS_ISIntegrationSoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>https://91.220.233.54/WARMDMS/WS/WS_ISIntegration.asmx</serializedValue>
+          <serializedValue>https://optimum.uniconf.ru/WARMDMS/WS/WS_ISIntegration.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
