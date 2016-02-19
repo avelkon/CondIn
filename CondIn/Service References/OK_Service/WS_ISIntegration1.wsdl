@@ -274,10 +274,10 @@
   </wsdl:binding>
   <wsdl:service name="WS_ISIntegration">
     <wsdl:port name="WS_ISIntegrationSoap" binding="tns:WS_ISIntegrationSoap">
-      <soap:address location="http://91.220.233.54/WARMDMS/WS/WS_ISIntegration.asmx" />
+      <soap:address location="https://91.220.233.54/WARMDMS/WS/WS_ISIntegration.asmx" />
     </wsdl:port>
     <wsdl:port name="WS_ISIntegrationSoap12" binding="tns:WS_ISIntegrationSoap12">
-      <soap12:address location="http://91.220.233.54/WARMDMS/WS/WS_ISIntegration.asmx" />
+      <soap12:address location="https://91.220.233.54/WARMDMS/WS/WS_ISIntegration.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

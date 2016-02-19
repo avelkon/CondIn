@@ -107,7 +107,7 @@
     <None Include="Service References\OK_Service\CondIn.OK_Service.UploadFileResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\OK_Service\WS_ISIntegration.wsdl" />
+    <None Include="Service References\OK_Service\WS_ISIntegration1.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
